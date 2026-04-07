@@ -42,12 +42,12 @@
       background: var(--bg-secondary);
       color: var(--text);
       min-height: 100vh;
-      padding: 2rem 1rem;
+      padding: 1rem;
     }
 
     h1 {
       text-align: center;
-      font-size: 28px;
+      font-size: clamp(22px, 6vw, 28px);
       font-weight: 500;
       color: var(--text);
       margin-bottom: .5rem;
@@ -56,39 +56,40 @@
 
     .subtitle {
       text-align: center;
-      font-size: 14px;
+      font-size: clamp(11px, 3.5vw, 14px);
       color: var(--text-muted);
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     .app {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
       background: var(--bg);
       border-radius: var(--radius-lg);
       border: 1px solid var(--border);
-      padding: 2rem;
+      padding: 1.5rem;
     }
 
     /* NAV */
     .nav {
       display: flex;
       gap: 8px;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       justify-content: center;
       flex-wrap: wrap;
     }
 
     .nav-btn {
-      padding: 10px 28px;
+      padding: 8px 20px;
       border-radius: 999px;
       border: 1.5px solid var(--border);
-      font-size: 14px;
+      font-size: clamp(12px, 3.5vw, 14px);
       font-weight: 500;
       cursor: pointer;
       transition: all 0.2s;
       background: var(--bg-secondary);
       color: var(--text-muted);
+      white-space: nowrap;
     }
 
     .nav-btn:hover {
@@ -109,7 +110,7 @@
 
     .week-title {
       text-align: center;
-      font-size: 22px;
+      font-size: clamp(18px, 5vw, 22px);
       font-weight: 500;
       color: var(--text);
       margin-bottom: .4rem;
@@ -117,38 +118,40 @@
 
     .week-dates {
       text-align: center;
-      font-size: 13px;
+      font-size: clamp(11px, 3vw, 13px);
       color: var(--text-muted);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
     }
 
-    /* TABLE - VERSIÓN MEJORADA Y RESPONSIVE */
+    /* TABLE - RESPONSIVE CON SCROLL HORIZONTAL (misma vista que en PC) */
     .table-wrap {
       overflow-x: auto;
       border-radius: var(--radius-lg);
       border: 1px solid var(--border);
+      -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      table-layout: fixed;
-      font-size: 13px;
-      min-width: 700px; /* Evita que se rompa en pantallas muy chicas, pero con scroll */
+      table-layout: auto; /* Cambiado de 'fixed' a 'auto' para mejor adaptación */
+      font-size: clamp(11px, 3vw, 13px);
+      min-width: 750px; /* Ancho mínimo para que se vea como en PC */
     }
 
     thead tr { background: var(--purple-light); }
 
     th {
-      padding: 12px 10px;
+      padding: 10px 8px;
       text-align: left;
       font-weight: 500;
-      font-size: 11px;
+      font-size: clamp(9px, 2.5vw, 11px);
       color: var(--purple-dark);
       border-bottom: 1px solid var(--purple-mid);
       text-transform: uppercase;
       letter-spacing: .5px;
       border-right: 1px solid var(--purple-mid);
+      white-space: nowrap;
     }
     
     th:last-child {
@@ -156,11 +159,11 @@
     }
 
     td {
-      padding: 12px 10px;
+      padding: 10px 8px;
       vertical-align: top;
       border-bottom: 1px solid var(--border);
       color: var(--text);
-      line-height: 1.5;
+      line-height: 1.4;
       border-right: 1px solid var(--border);
     }
     
@@ -175,11 +178,11 @@
       font-weight: 500;
       color: var(--purple-dark);
       white-space: nowrap;
-      font-size: 13px;
+      font-size: clamp(11px, 3vw, 13px);
     }
 
     .day-name {
-      font-size: 11px;
+      font-size: clamp(9px, 2.5vw, 11px);
       font-weight: 400;
       color: var(--text-muted);
       margin-top: 2px;
@@ -204,13 +207,14 @@
     /* BADGES */
     .badge {
       display: inline-block;
-      padding: 4px 12px;
+      padding: 4px 10px;
       border-radius: 999px;
-      font-size: 11px;
+      font-size: clamp(9px, 2.5vw, 11px);
       font-weight: 500;
       cursor: pointer;
       user-select: none;
       transition: all .2s;
+      white-space: nowrap;
     }
 
     .badge-pend { background: #F1EFE8; color: #5F5E5A; }
@@ -224,106 +228,104 @@
     }
 
     /* ============================================ */
-    /* ANCHOS DE COLUMNA FIJOS Y SIMÉTRICOS (para todas las semanas igual) */
+    /* ANCHOS DE COLUMNA OPTIMIZADOS para todas las semanas igual */
     /* ============================================ */
-    .col-day    { width: 85px; }
-    .col-meta   { width: 18%; }
+    .col-day    { width: 80px; }
+    .col-meta   { width: 17%; }
     .col-bloque { width: 16%; }
     .col-act    { width: 20%; }
-    .col-tiempo { width: 13%; }
+    .col-tiempo { width: 12%; }
     .col-monit  { width: 18%; }
-    .col-estado { width: 10%; }
+    .col-estado { width: 9%; }
 
     /* ============================================ */
-    /* DISEÑO RESPONSIVE (para pantallas de menos de 800px) */
+    /* AJUSTES RESPONSIVE - SIN MODIFICAR ESTRUCTURA */
     /* ============================================ */
-    @media (max-width: 800px) {
+    
+    /* Tablets */
+    @media (max-width: 900px) {
       .app {
         padding: 1rem;
       }
       
-      .nav-btn {
-        padding: 8px 20px;
-        font-size: 12px;
+      th, td {
+        padding: 8px 6px;
       }
       
-      /* Transformamos la tabla en un diseño tipo tarjeta apilada */
-      .table-wrap {
-        overflow-x: visible;
+      .col-day    { width: 70px; }
+      .col-meta   { width: 16%; }
+      .col-bloque { width: 15%; }
+      .col-act    { width: 19%; }
+      .col-tiempo { width: 11%; }
+      .col-monit  { width: 17%; }
+      .col-estado { width: 8%; }
+    }
+    
+    /* Móviles grandes */
+    @media (max-width: 768px) {
+      body {
+        padding: 0.5rem;
       }
       
-      table, thead, tbody, th, td, tr {
-        display: block;
-      }
-      
-      thead {
-        display: none; /* Ocultamos el encabezado fijo */
-      }
-      
-      tr {
-        display: block;
-        margin-bottom: 1.5rem;
-        border: 1px solid var(--border);
-        border-radius: var(--radius-lg);
-        background: var(--bg);
+      .app {
         padding: 0.75rem;
       }
       
-      td {
-        display: flex;
-        align-items: flex-start;
-        gap: 12px;
-        border: none;
-        border-bottom: 1px solid var(--border);
-        padding: 10px 8px;
-        border-right: none;
+      .nav-btn {
+        padding: 6px 14px;
       }
       
-      td:last-child {
-        border-bottom: none;
+      th, td {
+        padding: 6px 4px;
       }
       
-      /* Etiquetas para cada celda en modo responsive */
-      td::before {
-        content: attr(data-label);
-        font-weight: 600;
+      table {
         font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: var(--purple-dark);
-        min-width: 100px;
-        display: block;
+        min-width: 700px; /* Mantiene la vista tabla, solo hay que scrollear */
       }
       
-      /* Ajuste especial para la celda del día */
-      .day-cell {
-        white-space: normal;
-      }
-      
-      /* Los badges se ven bien */
       .badge {
-        display: inline-block;
+        padding: 3px 8px;
       }
       
-      /* Mejoramos el espaciado de celdas editables */
       [contenteditable] {
-        flex: 1;
+        padding: 1px 2px;
       }
     }
     
-    /* Ajuste fino para tablets muy chicas */
-    @media (max-width: 550px) {
-      td::before {
-        min-width: 85px;
+    /* Móviles chicos - el scroll horizontal es la mejor experiencia para mantener la misma vista */
+    @media (max-width: 480px) {
+      .nav {
+        gap: 6px;
+      }
+      
+      .nav-btn {
+        padding: 5px 12px;
+        font-size: 11px;
+      }
+      
+      .week-title {
+        margin-bottom: 0.2rem;
+      }
+      
+      .week-dates {
+        margin-bottom: 0.8rem;
+      }
+      
+      table {
+        min-width: 650px;
         font-size: 10px;
       }
       
-      td {
-        flex-wrap: wrap;
+      th, td {
+        padding: 5px 3px;
       }
       
+      .col-day    { width: 65px; }
+      
       .badge {
-        margin-left: 0;
+        padding: 2px 6px;
+        font-size: 9px;
       }
     }
   </style>
@@ -331,7 +333,7 @@
 <body>
 
   <h1>Cronograma de Estudio</h1>
-  <p class="subtitle">Abril 2025 cronograma Jail Abdala </p>
+  <p class="subtitle">Abril 2025 cronograma Jail Abdala · Deslizá hacia los costados si usás celular</p>
 
   <div class="app">
     <nav class="nav">
@@ -360,67 +362,67 @@
           </thead>
           <tbody>
             <tr>
-              <td class="day-cell" data-label="Día">01/04<div class="day-name">Miercoles</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Introducción a la materia, leer lecturas 1 y 2 del modulo 1 de aprender en el siglo 21. </span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Mañana 8–10hs.</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Leer atentamente y de manera consciente lectura 1 y 2, subrayar partes importantes y tomar notas.</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>2 horas (contando 20 minutos de descanso entre hora y hora).</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>luego de leer, explicar oralmente los temas vistos para monitorear progreso y comprencion de los temas.</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">01/04<div class="day-name">Miercoles</div></td>
+              <td><span contenteditable>Introducción a la materia, leer lecturas 1 y 2 del modulo 1 de aprender en el siglo 21. </span></td>
+              <td><span contenteditable>Mañana 8–10hs.</span></td>
+              <td><span contenteditable>Leer atentamente y de manera consciente lectura 1 y 2, subrayar partes importantes y tomar notas.</span></td>
+              <td><span contenteditable>2 horas (contando 20 minutos de descanso entre hora y hora).</span></td>
+              <td><span contenteditable>luego de leer, explicar oralmente los temas vistos para monitorear progreso y comprencion de los temas.</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">02/04<div class="day-name">Jueves</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Introducción a la materia, leer lecturas 3 y 4 del modulo 1 de aprender en el siglo 21.</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Tarde 17:30–19:30hs.</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Leer atentamente y de manera consciente lectura 3 y 4, subrayar partes importantes y tomar notas.</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>2 horas (contando 20 minutos de descanso entre hora y hora).</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>luego de leer, explicar oralmente los temas vistos para monitorear progreso y comprencion de los temas.</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">02/04<div class="day-name">Jueves</div></td>
+              <td><span contenteditable>Introducción a la materia, leer lecturas 3 y 4 del modulo 1 de aprender en el siglo 21.</span></td>
+              <td><span contenteditable>Tarde 17:30–19:30hs.</span></td>
+              <td><span contenteditable>Leer atentamente y de manera consciente lectura 3 y 4, subrayar partes importantes y tomar notas.</span></td>
+              <td><span contenteditable>2 horas (contando 20 minutos de descanso entre hora y hora).</span></td>
+              <td><span contenteditable>luego de leer, explicar oralmente los temas vistos para monitorear progreso y comprencion de los temas.</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">03/04<div class="day-name">Viernes</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Introducción a la materia, leer lecturas 1 y 2 del modulo 1 de sistemas de informacion.</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>siesta 14:30–17:30hs.</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Leer atentamente y de manera consciente lectura 1 y 2, subrayar partes importantes, tomar notas y realizar el tp 1.</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>3 horas (contando descanso de 30 minutos despues de la primera hora).</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>luego de leer, explicar oralmente los temas vistos para monitorear progreso y comprencion de los temas.</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">03/04<div class="day-name">Viernes</div></td>
+              <td><span contenteditable>Introducción a la materia, leer lecturas 1 y 2 del modulo 1 de sistemas de informacion.</span></td>
+              <td><span contenteditable>siesta 14:30–17:30hs.</span></td>
+              <td><span contenteditable>Leer atentamente y de manera consciente lectura 1 y 2, subrayar partes importantes, tomar notas y realizar el tp 1.</span></td>
+              <td><span contenteditable>3 horas (contando descanso de 30 minutos despues de la primera hora).</span></td>
+              <td><span contenteditable>luego de leer, explicar oralmente los temas vistos para monitorear progreso y comprencion de los temas.</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">04/04<div class="day-name">Sabado</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Introducción a la materia, leer lecturas 1 y 2 del modulo 1 de tecnologia.</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Tarde 15–17hs.</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Leer atentamente y de manera consciente lectura 1 y 2, subrayar partes importantes y tomar notas.</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>2 horas (contando descanso de 20 minutos despues de la primera hoea).</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>Realizar el tp 1 de dicha materia en modo de repaso de los contenidos abordados en el dia.</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">04/04<div class="day-name">Sabado</div></td>
+              <td><span contenteditable>Introducción a la materia, leer lecturas 1 y 2 del modulo 1 de tecnologia.</span></td>
+              <td><span contenteditable>Tarde 15–17hs.</span></td>
+              <td><span contenteditable>Leer atentamente y de manera consciente lectura 1 y 2, subrayar partes importantes y tomar notas.</span></td>
+              <td><span contenteditable>2 horas (contando descanso de 20 minutos despues de la primera hoea).</span></td>
+              <td><span contenteditable>Realizar el tp 1 de dicha materia en modo de repaso de los contenidos abordados en el dia.</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">05/04<div class="day-name">Domingo</div></td>
-              <td data-label="Meta semanal"><span contenteditable></span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Descanso.</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Pasar pascuas en familia y a la noche volver a cordoba.</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable></span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable></span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">05/04<div class="day-name">Domingo</div></td>
+              <td><span contenteditable></span></td>
+              <td><span contenteditable>Descanso.</span></td>
+              <td><span contenteditable>Pasar pascuas en familia y a la noche volver a cordoba.</span></td>
+              <td><span contenteditable></span></td>
+              <td><span contenteditable></span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">06/04<div class="day-name">Lunes</div></td>
-              <td data-label="Meta semanal"><span contenteditable>introduccion a las materias.</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>14:30-16:15hs.</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Repaso ligero de tecnologia, concretación de planificacion mensual y asistir a clases de 18:30 a 21:30.</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>1:45hs.</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable></span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">06/04<div class="day-name">Lunes</div></td>
+              <td><span contenteditable>introduccion a las materias.</span></td>
+              <td><span contenteditable>14:30-16:15hs.</span></td>
+              <td><span contenteditable>Repaso ligero de tecnologia, concretación de planificacion mensual y asistir a clases de 18:30 a 21:30.</span></td>
+              <td><span contenteditable>1:45hs.</span></td>
+              <td><span contenteditable></span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">07/04<div class="day-name">Martes</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Cierre de semana 1.</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Noche 21:30–00hs.</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Autoevaluación general de materias comprendidas en la semana y efectividad de la planificacion propuesta para la misma.</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>2:30hs.</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>Anotar dudas pendientes sobre temas, materias en si, y tambien mejoras para planificacion.</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">07/04<div class="day-name">Martes</div></td>
+              <td><span contenteditable>Cierre de semana 1.</span></td>
+              <td><span contenteditable>Noche 21:30–00hs.</span></td>
+              <td><span contenteditable>Autoevaluación general de materias comprendidas en la semana y efectividad de la planificacion propuesta para la misma.</span></td>
+              <td><span contenteditable>2:30hs.</span></td>
+              <td><span contenteditable>Anotar dudas pendientes sobre temas, materias en si, y tambien mejoras para planificacion.</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
           </tbody>
         </table>
@@ -446,67 +448,67 @@
           </thead>
           <tbody>
             <tr>
-              <td class="day-cell" data-label="Día">08/04<div class="day-name">Miercoles</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Leer moudlo 2 completo de aprender en el siglo 21 y de sistemas de información, anotar ideas, palabras claves y cosas importantes.</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Mañana 7–10hs, siesta de 14:30-16:15hs y noche de 22:30-00hs.</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Leer conscientemente y resumir modulo 2 de ambas materias planteadas.</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>3 horas por la mañana (mientras desayuno), 1:45hs por la siesta (sin receso ni descanso de por medio) y 1:30hs por la noche.</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable> leer resumenes realizados y explicar oralmente los temas abordados para comprobar nivel de comprension de los mismos.</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">08/04<div class="day-name">Miercoles</div></td>
+              <td><span contenteditable>Leer moudlo 2 completo de aprender en el siglo 21 y de sistemas de información, anotar ideas, palabras claves y cosas importantes.</span></td>
+              <td><span contenteditable>Mañana 7–10hs, siesta de 14:30-16:15hs y noche de 22:30-00hs.</span></td>
+              <td><span contenteditable>Leer conscientemente y resumir modulo 2 de ambas materias planteadas.</span></td>
+              <td><span contenteditable>3 horas por la mañana (mientras desayuno), 1:45hs por la siesta (sin receso ni descanso de por medio) y 1:30hs por la noche.</span></td>
+              <td><span contenteditable> leer resumenes realizados y explicar oralmente los temas abordados para comprobar nivel de comprension de los mismos.</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">09/04<div class="day-name">Jueves</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Leer moudlo 2 completo de aprender tecnologia y modulo 0 de analisis matematico, anotar ideas, palabras claves y cosas importantes.</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Mañana de 7:30-10:15hs, siesta de 14:45-16:15hs y noche de 21:30-00hs. </span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>leer ambos modulos previamente dichos de ambas materias e ir armando un resumen para poder estudiar en dias posteriores.</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>2:45hs por la mañana (mientras desayuno), 1:30hs por la siesta (sin descansos) y 2:30hs por la noche (con descanso al rededor de las 22:15 para cenar).  </span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>leer resumenes realizados y explicar oralmente los temas abordados para comprobar nivel de comprension de los mismos.</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">09/04<div class="day-name">Jueves</div></td>
+              <td><span contenteditable>Leer moudlo 2 completo de aprender tecnologia y modulo 0 de analisis matematico, anotar ideas, palabras claves y cosas importantes.</span></td>
+              <td><span contenteditable>Mañana de 7:30-10:15hs, siesta de 14:45-16:15hs y noche de 21:30-00hs. </span></td>
+              <td><span contenteditable>leer ambos modulos previamente dichos de ambas materias e ir armando un resumen para poder estudiar en dias posteriores.</span></td>
+              <td><span contenteditable>2:45hs por la mañana (mientras desayuno), 1:30hs por la siesta (sin descansos) y 2:30hs por la noche (con descanso al rededor de las 22:15 para cenar).  </span></td>
+              <td><span contenteditable>leer resumenes realizados y explicar oralmente los temas abordados para comprobar nivel de comprension de los mismos.</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">10/04<div class="day-name">Viernes</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Leer modulo 1 de analisis matematico</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Siesta de 14:30-16:15hs y noche de 22-00hs.</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Leer completamente el mmodulo 1 de la materia analisis matematicos, ver videos explicativos de temas que hagan falta, asistir a clases particulares de dicha materia y asistir a clases de la universidad por la tarde.</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>1:45hs por la siesta (sin descansos) y 2hs por la noche (sin descansos)</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>Descanso</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">10/04<div class="day-name">Viernes</div></td>
+              <td><span contenteditable>Leer modulo 1 de analisis matematico</span></td>
+              <td><span contenteditable>Siesta de 14:30-16:15hs y noche de 22-00hs.</span></td>
+              <td><span contenteditable>Leer completamente el mmodulo 1 de la materia analisis matematicos, ver videos explicativos de temas que hagan falta, asistir a clases particulares de dicha materia y asistir a clases de la universidad por la tarde.</span></td>
+              <td><span contenteditable>1:45hs por la siesta (sin descansos) y 2hs por la noche (sin descansos)</span></td>
+              <td><span contenteditable>Descanso</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">11/04<div class="day-name">Sabado</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Leer modulo 1 de algebra y realizar trabajo practico numero 1 de dicha materia y tambien de analisis.</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Mañana de 9-10:15hs y de 12-13hs, siesta de 16-18:30hs y tarde/noche de 20-22hs y de 22:45-00hs</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable> Completar lecturas del modulo 1 de la materia algebra y realizar trabajos practicos pendientes.</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>Primer bloque de la mañana 1:15hs (sin descansos), segundo bloque de la mañana 1hs (sin descansos), bloque de la siesta 2:30hs (con descansos de 10 minutos despues de cada hora transcurrida), primer bloque de la tarde 2hs (con descanso de 20 minutos luego de la primera hora) y ultimo bloque del dia 1:15hs (sin descansos)</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>Descanso</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">11/04<div class="day-name">Sabado</div></td>
+              <td><span contenteditable>Leer modulo 1 de algebra y realizar trabajo practico numero 1 de dicha materia y tambien de analisis.</span></td>
+              <td><span contenteditable>Mañana de 9-10:15hs y de 12-13hs, siesta de 16-18:30hs y tarde/noche de 20-22hs y de 22:45-00hs</span></td>
+              <td><span contenteditable> Completar lecturas del modulo 1 de la materia algebra y realizar trabajos practicos pendientes.</span></td>
+              <td><span contenteditable>Primer bloque de la mañana 1:15hs (sin descansos), segundo bloque de la mañana 1hs (sin descansos), bloque de la siesta 2:30hs (con descansos de 10 minutos despues de cada hora transcurrida), primer bloque de la tarde 2hs (con descanso de 20 minutos luego de la primera hora) y ultimo bloque del dia 1:15hs (sin descansos)</span></td>
+              <td><span contenteditable>Descanso</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">12/04<div class="day-name">Domingo</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Estudiar modulo 1 de aprender en el siglo 21</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Mañana 10–12hs y tarde de 16-19hs</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>consolidar y empezar a estudiar el modulo 1 de la materia planteada anteriormente.</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>A la mañana 2hs (con descansos de 15 minutos cada 45 minutos) y a la tarde 3hs (con descansos de 25 minutos cada 1 hora)</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>Analizar desempeño y controlar el cumplimiento semanal de la planificacion con el objetivo de seguir con la misma o ajustarla para poder cumplir con todas las exigencias.</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">12/04<div class="day-name">Domingo</div></td>
+              <td><span contenteditable>Estudiar modulo 1 de aprender en el siglo 21</span></td>
+              <td><span contenteditable>Mañana 10–12hs y tarde de 16-19hs</span></td>
+              <td><span contenteditable>consolidar y empezar a estudiar el modulo 1 de la materia planteada anteriormente.</span></td>
+              <td><span contenteditable>A la mañana 2hs (con descansos de 15 minutos cada 45 minutos) y a la tarde 3hs (con descansos de 25 minutos cada 1 hora)</span></td>
+              <td><span contenteditable>Analizar desempeño y controlar el cumplimiento semanal de la planificacion con el objetivo de seguir con la misma o ajustarla para poder cumplir con todas las exigencias.</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">13/04<div class="day-name">Lunes</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Estudiar lecturas 1 y 2 del modulo 1 de sistemas de informacion.</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Mañana de 8:30-10:15hs, siesta de 14:45-16:15hs</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Consolidar conceptos y lecturas de dicha materia con el fin de adelantar estudios.</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>Bloque de la mañana 1:45hs (con descanso de 10 minutos despues de la primera hora) y bloque de la siesta 1:15hs (sin descansos).</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>Descanso</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">13/04<div class="day-name">Lunes</div></td>
+              <td><span contenteditable>Estudiar lecturas 1 y 2 del modulo 1 de sistemas de informacion.</span></td>
+              <td><span contenteditable>Mañana de 8:30-10:15hs, siesta de 14:45-16:15hs</span></td>
+              <td><span contenteditable>Consolidar conceptos y lecturas de dicha materia con el fin de adelantar estudios.</span></td>
+              <td><span contenteditable>Bloque de la mañana 1:45hs (con descanso de 10 minutos despues de la primera hora) y bloque de la siesta 1:15hs (sin descansos).</span></td>
+              <td><span contenteditable>Descanso</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">14/04<div class="day-name">Martes</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Cierre semana 2</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Mañana de 8-10:15hs, siesta de 14:45-16:15hs y noche de 21:30-00hs</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Leer y estudiar lectura 3 de sistemas de informacion y leer, subrayar ideas y resumir modulo 1 de introduccion a los algoritmos. </span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>A la mañana 2:15hs (con descanso de 20 minutos despues de la primera hora), a la siesta 1:15hs (sin descansos) y a la noche 2:30hs (con un descanso alrededor de las 22:15 para cenar)</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>Descanso</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">14/04<div class="day-name">Martes</div></td>
+              <td><span contenteditable>Cierre semana 2</span></td>
+              <td><span contenteditable>Mañana de 8-10:15hs, siesta de 14:45-16:15hs y noche de 21:30-00hs</span></td>
+              <td><span contenteditable>Leer y estudiar lectura 3 de sistemas de informacion y leer, subrayar ideas y resumir modulo 1 de introduccion a los algoritmos. </span></td>
+              <td><span contenteditable>A la mañana 2:15hs (con descanso de 20 minutos despues de la primera hora), a la siesta 1:15hs (sin descansos) y a la noche 2:30hs (con un descanso alrededor de las 22:15 para cenar)</span></td>
+              <td><span contenteditable>Descanso</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
           </tbody>
         </table>
@@ -532,67 +534,67 @@
           </thead>
           <tbody>
             <tr>
-              <td class="day-cell" data-label="Día">15/04<div class="day-name">Miercoles</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Arrancar unidad 3</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Mañana 8–10h</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Lectura inicial y esquema</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>2 horas</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>Repaso de semanas 1 y 2</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">15/04<div class="day-name">Miercoles</div></td>
+              <td><span contenteditable>Arrancar unidad 3</span></td>
+              <td><span contenteditable>Mañana 8–10h</span></td>
+              <td><span contenteditable>Lectura inicial y esquema</span></td>
+              <td><span contenteditable>2 horas</span></td>
+              <td><span contenteditable>Repaso de semanas 1 y 2</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">16/04<div class="day-name">Jueves</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Ejercicios unidad 3</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Tarde 15–17h</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Problemas aplicados</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>2 horas</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>Corrección inmediata</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">16/04<div class="day-name">Jueves</div></td>
+              <td><span contenteditable>Ejercicios unidad 3</span></td>
+              <td><span contenteditable>Tarde 15–17h</span></td>
+              <td><span contenteditable>Problemas aplicados</span></td>
+              <td><span contenteditable>2 horas</span></td>
+              <td><span contenteditable>Corrección inmediata</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">17/04<div class="day-name">Viernes</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Dominar conceptos avanzados</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Mañana 9–12h</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Teoría avanzada y ejemplos</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>3 horas</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>Preguntas tipo examen</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">17/04<div class="day-name">Viernes</div></td>
+              <td><span contenteditable>Dominar conceptos avanzados</span></td>
+              <td><span contenteditable>Mañana 9–12h</span></td>
+              <td><span contenteditable>Teoría avanzada y ejemplos</span></td>
+              <td><span contenteditable>3 horas</span></td>
+              <td><span contenteditable>Preguntas tipo examen</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">18/04<div class="day-name">Sabado</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Repaso integral</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Tarde 16–18h</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Revisión de las 3 unidades</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>2 horas</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>Ficha de errores frecuentes</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">18/04<div class="day-name">Sabado</div></td>
+              <td><span contenteditable>Repaso integral</span></td>
+              <td><span contenteditable>Tarde 16–18h</span></td>
+              <td><span contenteditable>Revisión de las 3 unidades</span></td>
+              <td><span contenteditable>2 horas</span></td>
+              <td><span contenteditable>Ficha de errores frecuentes</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">19/04<div class="day-name">Domingo</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Simulacro completo</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Mañana 10–13h</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Examen bajo condiciones reales</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>3 horas</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>Análisis de resultados</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">19/04<div class="day-name">Domingo</div></td>
+              <td><span contenteditable>Simulacro completo</span></td>
+              <td><span contenteditable>Mañana 10–13h</span></td>
+              <td><span contenteditable>Examen bajo condiciones reales</span></td>
+              <td><span contenteditable>3 horas</span></td>
+              <td><span contenteditable>Análisis de resultados</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">20/04<div class="day-name">Lunes</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Consolidación</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>A la tarde</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Repaso de puntos débiles</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>1.5 horas</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>Repasar ficha de errores</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">20/04<div class="day-name">Lunes</div></td>
+              <td><span contenteditable>Consolidación</span></td>
+              <td><span contenteditable>A la tarde</span></td>
+              <td><span contenteditable>Repaso de puntos débiles</span></td>
+              <td><span contenteditable>1.5 horas</span></td>
+              <td><span contenteditable>Repasar ficha de errores</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">21/04<div class="day-name">Martes</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Cierre semana 3</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Noche 20–21h</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Autoevaluación y planificación</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>1 hora</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>Definir foco para semana final</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">21/04<div class="day-name">Martes</div></td>
+              <td><span contenteditable>Cierre semana 3</span></td>
+              <td><span contenteditable>Noche 20–21h</span></td>
+              <td><span contenteditable>Autoevaluación y planificación</span></td>
+              <td><span contenteditable>1 hora</span></td>
+              <td><span contenteditable>Definir foco para semana final</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
           </tbody>
         </table>
@@ -618,67 +620,67 @@
           </thead>
           <tbody>
             <tr>
-              <td class="day-cell" data-label="Día">22/04<div class="day-name">Miercoles</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Repaso general intensivo</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Mañana 8–11h</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Repasar todas las unidades</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>3 horas</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>Mapa mental global</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">22/04<div class="day-name">Miercoles</div></td>
+              <td><span contenteditable>Repaso general intensivo</span></td>
+              <td><span contenteditable>Mañana 8–11h</span></td>
+              <td><span contenteditable>Repasar todas las unidades</span></td>
+              <td><span contenteditable>3 horas</span></td>
+              <td><span contenteditable>Mapa mental global</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">23/04<div class="day-name">Jueves</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Atacar puntos débiles</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Tarde 15–18h</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Ejercicios de temas flojos</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>3 horas</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>Comparar con simulacros previos</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">23/04<div class="day-name">Jueves</div></td>
+              <td><span contenteditable>Atacar puntos débiles</span></td>
+              <td><span contenteditable>Tarde 15–18h</span></td>
+              <td><span contenteditable>Ejercicios de temas flojos</span></td>
+              <td><span contenteditable>3 horas</span></td>
+              <td><span contenteditable>Comparar con simulacros previos</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">24/04<div class="day-name">Viernes</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Simulacro final</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Mañana 9–12h</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Examen completo cronometrado</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>3 horas</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>Revisión exhaustiva de errores</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">24/04<div class="day-name">Viernes</div></td>
+              <td><span contenteditable>Simulacro final</span></td>
+              <td><span contenteditable>Mañana 9–12h</span></td>
+              <td><span contenteditable>Examen completo cronometrado</span></td>
+              <td><span contenteditable>3 horas</span></td>
+              <td><span contenteditable>Revisión exhaustiva de errores</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">25/04<div class="day-name">Sabado</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Repasar errores del simulacro</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Tarde 16–18h</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Corregir y rehacer ejercicios</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>2 horas</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>Ficha final de conceptos clave</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">25/04<div class="day-name">Sabado</div></td>
+              <td><span contenteditable>Repasar errores del simulacro</span></td>
+              <td><span contenteditable>Tarde 16–18h</span></td>
+              <td><span contenteditable>Corregir y rehacer ejercicios</span></td>
+              <td><span contenteditable>2 horas</span></td>
+              <td><span contenteditable>Ficha final de conceptos clave</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">26/04<div class="day-name">Domingo</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Repaso ligero y mental</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Mañana 10–12h</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Leer resúmenes y fichas</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>2 horas</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>No hacer ejercicios nuevos</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">26/04<div class="day-name">Domingo</div></td>
+              <td><span contenteditable>Repaso ligero y mental</span></td>
+              <td><span contenteditable>Mañana 10–12h</span></td>
+              <td><span contenteditable>Leer resúmenes y fichas</span></td>
+              <td><span contenteditable>2 horas</span></td>
+              <td><span contenteditable>No hacer ejercicios nuevos</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">27/04<div class="day-name">Lunes</div></td>
-              <td data-label="Meta semanal"><span contenteditable>Descanso y preparación</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>A la tarde</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Descanso activo, repaso mental</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>1 hora</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>Preparar material para mañana</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">27/04<div class="day-name">Lunes</div></td>
+              <td><span contenteditable>Descanso y preparación</span></td>
+              <td><span contenteditable>A la tarde</span></td>
+              <td><span contenteditable>Descanso activo, repaso mental</span></td>
+              <td><span contenteditable>1 hora</span></td>
+              <td><span contenteditable>Preparar material para mañana</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
             <tr>
-              <td class="day-cell" data-label="Día">28/04<div class="day-name">Martes</div></td>
-              <td data-label="Meta semanal"><span contenteditable>¡Día de evaluación!</span></td>
-              <td data-label="Bloque de estudio"><span contenteditable>Según horario</span></td>
-              <td data-label="Actividad priorizada"><span contenteditable>Repasar ficha clave al despertar</span></td>
-              <td data-label="Tiempo estimado"><span contenteditable>30 min</span></td>
-              <td data-label="Monitoreo y repaso"><span contenteditable>Confiar en el proceso</span></td>
-              <td data-label="Estado"><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
+              <td class="day-cell">28/04<div class="day-name">Martes</div></td>
+              <td><span contenteditable>¡Día de evaluación!</span></td>
+              <td><span contenteditable>Según horario</span></td>
+              <td><span contenteditable>Repasar ficha clave al despertar</span></td>
+              <td><span contenteditable>30 min</span></td>
+              <td><span contenteditable>Confiar en el proceso</span></td>
+              <td><span class="badge badge-pend" onclick="cycleBadge(this)">Pendiente</span></td>
             </tr>
           </tbody>
         </table>
