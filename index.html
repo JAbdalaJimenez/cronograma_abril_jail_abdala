@@ -7,11 +7,6 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* AÑADIDO: FONDO NEGRO PARA TODO, INCLUYENDO CALENDARIO */
-    body, .app, .table-wrap, table, tbody, tr, td, th, .week-panel {
-      background: #000000 !important;
-    }
-
     :root {
       --bg: #ffffff;
       --bg-secondary: #f5f4f0;
@@ -44,7 +39,7 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #000000 !important;
+      background: var(--bg-secondary);
       color: var(--text);
       min-height: 100vh;
       padding: 1rem;
@@ -69,7 +64,7 @@
     .app {
       max-width: 1400px;
       margin: 0 auto;
-      background: #000000 !important;
+      background: var(--bg);
       border-radius: var(--radius-lg);
       border: 1px solid var(--border);
       padding: 1.5rem;
@@ -110,14 +105,8 @@
     }
 
     /* PANELS */
-    .week-panel { 
-      display: none;
-      background: #000000 !important;
-    }
-    .week-panel.active { 
-      display: block;
-      background: #000000 !important;
-    }
+    .week-panel { display: none; }
+    .week-panel.active { display: block; }
 
     .week-title {
       text-align: center;
@@ -139,22 +128,18 @@
       overflow-x: auto;
       border-radius: var(--radius-lg);
       border: 1px solid var(--border);
-      -webkit-overflow-scrolling: touch;
-      background: #000000 !important;
+      -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      table-layout: auto;
+      table-layout: auto; /* Cambiado de 'fixed' a 'auto' para mejor adaptación */
       font-size: clamp(11px, 3vw, 13px);
-      min-width: 750px;
-      background: #000000 !important;
+      min-width: 750px; /* Ancho mínimo para que se vea como en PC */
     }
 
-    thead tr { 
-      background: #000000 !important;
-    }
+    thead tr { background: var(--purple-light); }
 
     th {
       padding: 10px 8px;
@@ -167,7 +152,6 @@
       letter-spacing: .5px;
       border-right: 1px solid var(--purple-mid);
       white-space: nowrap;
-      background: #000000 !important;
     }
     
     th:last-child {
@@ -181,7 +165,6 @@
       color: var(--text);
       line-height: 1.4;
       border-right: 1px solid var(--border);
-      background: #000000 !important;
     }
     
     td:last-child {
@@ -189,7 +172,7 @@
     }
 
     tr:last-child td { border-bottom: none; }
-    tr:hover td { background: color-mix(in srgb, var(--purple-light) 30%, #000000) !important; }
+    tr:hover td { background: color-mix(in srgb, var(--purple-light) 30%, transparent); }
 
     .day-cell {
       font-weight: 500;
@@ -234,9 +217,9 @@
       white-space: nowrap;
     }
 
-    .badge-pend { background: #2C2C2A; color: #B4B2A9; }
-    .badge-prog { background: #412402; color: #EF9F27; }
-    .badge-ok   { background: #173404; color: #97C459; }
+    .badge-pend { background: #F1EFE8; color: #5F5E5A; }
+    .badge-prog { background: #FAEEDA; color: #854F0B; }
+    .badge-ok   { background: #EAF3DE; color: #3B6D11; }
 
     @media (prefers-color-scheme: dark) {
       .badge-pend { background: #2C2C2A; color: #B4B2A9; }
@@ -298,7 +281,7 @@
       
       table {
         font-size: 11px;
-        min-width: 700px;
+        min-width: 700px; /* Mantiene la vista tabla, solo hay que scrollear */
       }
       
       .badge {
@@ -310,7 +293,7 @@
       }
     }
     
-    /* Móviles chicos */
+    /* Móviles chicos - el scroll horizontal es la mejor experiencia para mantener la misma vista */
     @media (max-width: 480px) {
       .nav {
         gap: 6px;
